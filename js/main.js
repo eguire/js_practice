@@ -22,16 +22,37 @@ const personalPlanPeter = {
 	}
 };
 
-// function showExperience(plan) {
-// 	let { exp } = plan.skills;
-// 	return `${exp}`;
-// }
+function showExperience(plan) {
+	let { exp } = plan.skills;
+	return `${exp}`;
+}
 
-// function showProgrammingLangs(plan) {
-// 	let result = '';
-// 	let langsArr = plan.skills.programmingLangs;
-// 	for (let keys in langsArr) {
-// 		result += `Язык ${keys} изучен на ${langsArr[keys]}\n`
-// 	}
-// 	return result;
-// }
+function showProgrammingLangs(plan) {
+	let result = '';
+	let langsArr = plan.skills.programmingLangs;
+	for (let keys in langsArr) {
+		result += `Язык ${keys} изучен на ${langsArr[keys]}\n`
+	}
+	return result;
+}
+
+const family = ['Peter', 'Ann', 'Alex', 'Linda'];
+
+function showFamily(arr) {
+	if (arr.length > 0) {
+		let message = 'Семья состоит из:'
+		for (let value of arr) {
+			message += ` ${value}`;
+		}
+		return message;
+	}
+	return 'Семья пуста';
+}
+
+const favoriteCities = ['liSBon', 'ROME', 'miLan', 'Dublin'];
+
+function standardizeStrings(arr) {
+	arr.forEach(function(city, num) {
+		console.log(`${num + 1} | ${city.toLowerCase()}`)
+	});
+}
