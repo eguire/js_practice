@@ -1,58 +1,31 @@
-const personalPlanPeter = {
-	name: "Peter",
-	age: "29",
-	skills: {
-		languages: ['ru', 'eng'],
-		programmingLangs: {
-			js: '20%',
-			php: '10%'
-		},
-		exp: '1 month'
-	},
-	showAgeAndLangs: function (plan) {
-		const { age } = plan;
-		const { languages } = plan.skills;
-		let str = `Мне ${age} и я владею языками: `;
+const someString = 'This is some strange string';
 
-		languages.forEach(function (lang) {
-			str += `${lang.toUpperCase()} `;
-		});
+function reverse(str) {
+	if (typeof(str) === 'string') {
+		const strArray = str.split('');
 
-		return str;
+		strArray.reverse();
+
+		return strArray.join('');
 	}
-};
-
-function showExperience(plan) {
-	let { exp } = plan.skills;
-	return `${exp}`;
+	return 'Ошибка!';
 }
 
-function showProgrammingLangs(plan) {
-	let result = '';
-	let langsArr = plan.skills.programmingLangs;
-	for (let keys in langsArr) {
-		result += `Язык ${keys} изучен на ${langsArr[keys]}\n`
-	}
-	return result;
-}
+const baseCurrencies = ['USD', 'EUR'];
+const additionalCurrencies = ['UAH', 'RUB', 'CNY'];
+const allCurrencies = [...baseCurrencies, ...additionalCurrencies];
 
-const family = ['Peter', 'Ann', 'Alex', 'Linda'];
-
-function showFamily(arr) {
-	if (arr.length > 0) {
-		let message = 'Семья состоит из:'
+function availableCurr(arr, missingCurr) {
+	if (arr.length !== 0) {
+		let result = 'Доступные валюты:\n';
 		for (let value of arr) {
-			message += ` ${value}`;
+			if (value === missingCurr) {
+				continue;
+			} else {
+				result += `${value}\n`;
+			}
 		}
-		return message;
+		return result;
 	}
-	return 'Семья пуста';
-}
-
-const favoriteCities = ['liSBon', 'ROME', 'miLan', 'Dublin'];
-
-function standardizeStrings(arr) {
-	arr.forEach(function(city, num) {
-		console.log(`${num + 1} | ${city.toLowerCase()}`)
-	});
+	return 'Нет доступных валют';
 }
