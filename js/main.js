@@ -1,31 +1,45 @@
-const someString = 'This is some strange string';
-
-function reverse(str) {
-	if (typeof(str) === 'string') {
-		const strArray = str.split('');
-
-		strArray.reverse();
-
-		return strArray.join('');
-	}
-	return 'Ошибка!';
+const shoppingMallData = {
+	shops: [
+		{
+			width: 10,
+			length: 5
+		},
+		{
+			width: 15,
+			length: 7
+		},
+		{
+			width: 20,
+			length: 5
+		},
+		{
+			width: 8,
+			length: 10
+		}
+	],
+	height: 5,
+	moneyPer1m3: 30,
+	budget: 50000
 }
 
-const baseCurrencies = ['USD', 'EUR'];
-const additionalCurrencies = ['UAH', 'RUB', 'CNY'];
-const allCurrencies = [...baseCurrencies, ...additionalCurrencies];
+function isBudgetEnough(data) {
 
-function availableCurr(arr, missingCurr) {
-	if (arr.length !== 0) {
-		let result = 'Доступные валюты:\n';
-		for (let value of arr) {
-			if (value === missingCurr) {
-				continue;
-			} else {
-				result += `${value}\n`;
-			}
-		}
-		return result;
+	const shopSquareArr = [];
+
+	data.shops.forEach((shop, num) => {
+		shopSquareArr[num] = shop.width * shop.length;
+	});
+
+	const totalSquare = shopSquareArr.reduce(function(a, b) {
+		return a + b;
+	});
+
+	const totalVolume = totalSquare * data.height;
+
+	const totalCost = totalVolume * data.moneyPer1m3;
+
+	if (totalCost < data.budget) {
+		return 'Бюджета достаточно';
 	}
-	return 'Нет доступных валют';
+	return 'Бюджета недостаточно'
 }
