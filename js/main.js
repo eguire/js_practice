@@ -1,45 +1,36 @@
-const shoppingMallData = {
-	shops: [
-		{
-			width: 10,
-			length: 5
-		},
-		{
-			width: 15,
-			length: 7
-		},
-		{
-			width: 20,
-			length: 5
-		},
-		{
-			width: 8,
-			length: 10
-		}
-	],
-	height: 5,
-	moneyPer1m3: 30,
-	budget: 50000
+const films = [
+	{
+			name: 'Titanic',
+			rating: 9
+	},
+	{
+			name: 'Die hard 5',
+			rating: 5
+	},
+	{
+			name: 'Matrix',
+			rating: 8
+	},
+	{
+			name: 'Some bad film',
+			rating: 4
+	}
+];
+
+function showGoodFilms(arr) {
+	return arr.filter(item => item.rating >= 8);
 }
 
-function isBudgetEnough(data) {
+function showListOfFilms(arr) {
+	return arr.map(item => item.name).reduce((string, name) => `${string}, ${name}`);
+}
 
-	const shopSquareArr = [];
+function setFilmsIds(arr) {
+	return arr.map((item, index) => Object.assign(item, {id: index}));
+};
 
-	data.shops.forEach((shop, num) => {
-		shopSquareArr[num] = shop.width * shop.length;
-	});
+const tranformedArray = setFilmsIds(films);
 
-	const totalSquare = shopSquareArr.reduce(function(a, b) {
-		return a + b;
-	});
-
-	const totalVolume = totalSquare * data.height;
-
-	const totalCost = totalVolume * data.moneyPer1m3;
-
-	if (totalCost < data.budget) {
-		return 'Бюджета достаточно';
-	}
-	return 'Бюджета недостаточно'
+function checkFilms(arr) {
+	return arr.every(item => Object.keys(item)[2] === 'id');
 }
