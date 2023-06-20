@@ -1,0 +1,40 @@
+body {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.tab__list {
+	display: flex;
+	gap: 30px;
+
+	list-style: none;
+	cursor: pointer;
+}
+
+.tab__btn--active {
+	color: green;
+	font-weight: 600;
+}
+
+.tab__content {
+	display: none;
+	padding-left: 30px;
+
+	font-size: 24px;
+	font-weight: 500;
+}
+
+.tab__content--active {
+	display: block;
+	animation: scale 0.5s;
+}
+
+@keyframes scale {
+	from {
+		transform: scaleY(0);
+	}
+	to {
+		transform: scaleY(1);
+	}
+}

@@ -1,36 +1,26 @@
-const films = [
-	{
-			name: 'Titanic',
-			rating: 9
-	},
-	{
-			name: 'Die hard 5',
-			rating: 5
-	},
-	{
-			name: 'Matrix',
-			rating: 8
-	},
-	{
-			name: 'Some bad film',
-			rating: 4
-	}
+const funds = [
+	{amount: -1400},
+	{amount: 2400},
+	{amount: -1000},
+	{amount: 500},
+	{amount: 10400},
+	{amount: -11400}
 ];
 
-function showGoodFilms(arr) {
-	return arr.filter(item => item.rating >= 8);
-}
-
-function showListOfFilms(arr) {
-	return arr.map(item => item.name).reduce((string, name) => `${string}, ${name}`);
-}
-
-function setFilmsIds(arr) {
-	return arr.map((item, index) => Object.assign(item, {id: index}));
+const getPositiveIncomeAmount = (data) => {
+	return data
+	.filter(item => Object.values(item) > 0)
+	.map(item => item.amount)
+	.reduce((sum, amount) => sum + amount);
 };
 
-const tranformedArray = setFilmsIds(films);
+const getTotalIncomeAmount = (data) => {
+	if (data.some(item => Object.values(item) < 0)) {
+		return data.map(item => item.amount).reduce((sum, amount) => sum + amount);
+	} else {
+		getPositiveIncomeAmount(data);
+	}
+};
 
-function checkFilms(arr) {
-	return arr.every(item => Object.keys(item)[2] === 'id');
-}
+console.log(getTotalIncomeAmount(funds));
+
